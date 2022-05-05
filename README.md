@@ -1,3 +1,7 @@
+# Lurk IPLD
+
+This is an experimental and at-least transiently incompatible fork of [libipld](https://github.com/ipld/libipld). It exists to serve the needs of [Lurk](https://github.com/lurk-lang/lurk-rs) until stable solutions can be upstreamed.
+
 # Rust IPLD library
 
 > Basic rust ipld library supporting `dag-cbor`, `dag-json` and `dag-pb` formats.
