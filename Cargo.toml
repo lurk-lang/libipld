@@ -7,6 +7,7 @@ license = "MIT OR Apache-2.0"
 description = "IPLD library for Lurk"
 repository = "https://github.com/lurk-lang/lurk-ipld"
 readme = "README.md"
+resolver = "2"
 
 [package.metadata.release]
 consolidate-commits = true
