@@ -517,7 +517,7 @@ impl<'de> de::Deserializer<'de> for Ipld {
         visitor: V,
     ) -> Result<V::Value, Self::Error> {
         let (variant, value) = match self {
-            Ipld::List(xs) if xs.len() >= 1 => match &xs[0] {
+            Ipld::List(xs) if !xs.is_empty() => match &xs[0] {
                 Ipld::Integer(idx) if *idx >= 0i128 && *idx < variants.len() as i128 => {
                     let idx = *idx as usize;
                     let variant = String::from(variants[idx]);

@@ -1,4 +1,4 @@
-use alloc::{borrow::ToOwned, format, string::ToString, vec::Vec};
+use alloc::{borrow::ToOwned, format, string::ToString, vec, vec::Vec};
 use core::convert::TryFrom;
 
 use cid::{serde::CID_SERDE_PRIVATE_IDENTIFIER, Cid};
@@ -310,7 +310,7 @@ impl<'a> serde::Serializer for &'a Serializer {
         _len: usize,
     ) -> Result<Self::SerializeStruct, Self::Error> {
         Ok(StructSerializer {
-            ser: &self,
+            ser: self,
             vec: Vec::new(),
             variant_index: 0,
         })
@@ -324,7 +324,7 @@ impl<'a> serde::Serializer for &'a Serializer {
         _len: usize,
     ) -> Result<Self::SerializeStructVariant, Self::Error> {
         Ok(StructSerializer {
-            ser: &self,
+            ser: self,
             vec: Vec::new(),
             variant_index,
         })
@@ -414,7 +414,7 @@ impl ser::SerializeTupleVariant for SerializeTupleVariant {
     fn end(self) -> Result<Self::Ok, Self::Error> {
         let mut vec = Vec::new();
         let mut args = self.vec.clone();
-        vec.push(Ipld::Integer(self.idx.clone() as i128));
+        vec.push(Ipld::Integer(self.idx as i128));
         vec.append(&mut args);
         Ok(Ipld::List(vec))
     }
@@ -428,12 +428,8 @@ impl ser::SerializeMap for SerializeMap {
     where
         T: ser::Serialize,
     {
-        match key.serialize(&Serializer)? {
-            key => {
-                self.next_key = Some(key);
-                Ok(())
-            }
-        }
+        self.next_key = Some(key.serialize(&Serializer)?);
+        Ok(())
     }
 
     fn serialize_value<T: ?Sized>(&mut self, value: &T) -> Result<(), Self::Error>
@@ -522,8 +518,7 @@ impl<'a> ser::SerializeStructVariant for StructSerializer<'a> {
     }
 
     fn end(self) -> Result<Self::Ok, Self::Error> {
-        let mut vec = Vec::new();
-        vec.push(Ipld::Integer(self.variant_index.clone() as i128));
+        let mut vec = vec![Ipld::Integer(self.variant_index as i128)];
         let mut args = self.end_inner()?;
         vec.append(&mut args);
         Ok(Ipld::List(vec))

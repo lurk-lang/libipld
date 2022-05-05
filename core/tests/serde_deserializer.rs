@@ -652,7 +652,7 @@ fn ipld_deserializer_struct_errors() {
     };
 
     let ipld_missing = Ipld::List(vec![(Ipld::Integer(my_struct.hello.into()))]);
-    error_except(my_struct.clone(), &ipld_missing);
+    error_except(my_struct, &ipld_missing);
     let error_missing = MyStruct::deserialize(ipld_missing);
     assert!(error_missing.is_err());
 
