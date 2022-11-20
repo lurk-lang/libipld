@@ -19,6 +19,7 @@ where
 }
 
 #[test]
+#[allow(clippy::let_unit_value)]
 fn ipld_serializer_unit() {
     let unit = ();
     let serialized = to_ipld(unit).unwrap();

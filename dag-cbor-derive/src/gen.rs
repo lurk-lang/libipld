@@ -13,7 +13,7 @@ pub fn gen_encode(ast: &SchemaType, lurk_ipld: &syn::Ident) -> TokenStream {
     let trait_name = quote!(#lurk_ipld::codec::Encode<#lurk_ipld::cbor::DagCborCodec>);
 
     quote! {
-        impl#impl_generics #trait_name for #ident #ty_generics #where_clause {
+        impl #impl_generics #trait_name for #ident #ty_generics #where_clause {
             fn encode<W: std::io::Write>(
                 &self,
                 c: #lurk_ipld::cbor::DagCborCodec,
@@ -37,7 +37,7 @@ pub fn gen_decode(ast: &SchemaType, lurk_ipld: &syn::Ident) -> TokenStream {
     let trait_name = quote!(#lurk_ipld::codec::Decode<#lurk_ipld::cbor::DagCborCodec>);
 
     quote! {
-        impl#impl_generics #trait_name for #ident #ty_generics #where_clause {
+        impl #impl_generics #trait_name for #ident #ty_generics #where_clause {
             fn decode<R: std::io::Read + std::io::Seek>(
                 c: #lurk_ipld::cbor::DagCborCodec,
                 r: &mut R,
@@ -100,7 +100,6 @@ fn gen_encode_struct_body(s: &Struct) -> TokenStream {
             let dfields = s.fields.iter().filter_map(|field| {
                 if let Some(default) = field.default.as_ref() {
                     let binding = &field.binding;
-                    let default = &*default;
                     Some(quote! {
                         if #binding == &#default {
                             len -= 1;

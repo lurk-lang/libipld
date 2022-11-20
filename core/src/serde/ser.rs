@@ -94,7 +94,8 @@ impl ser::Serialize for Ipld {
     }
 }
 
-struct Serializer;
+/// The IPLD serializer.
+pub struct Serializer;
 
 pub struct StructSerializer<'a> {
     ser: &'a Serializer,

@@ -55,6 +55,7 @@ where
 
 #[test]
 #[allow(clippy::unit_cmp)]
+#[allow(clippy::let_unit_value)]
 fn ipld_deserializer_unit() {
     let unit = ();
     let ipld = Ipld::List(vec![]);

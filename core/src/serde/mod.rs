@@ -8,7 +8,7 @@ mod de;
 mod ser;
 
 pub use de::from_ipld;
-pub use ser::to_ipld;
+pub use ser::{to_ipld, Serializer};
 
 #[cfg(test)]
 mod test {
@@ -30,7 +30,7 @@ mod test {
     where
         T: Serialize + DeserializeOwned + PartialEq + fmt::Debug,
     {
-        let encoded: Ipld = to_ipld(&data).unwrap();
+        let encoded: Ipld = to_ipld(data).unwrap();
         assert_eq!(&encoded, ipld);
         let decoded: T = from_ipld(ipld.clone()).unwrap();
         assert_eq!(&decoded, data);

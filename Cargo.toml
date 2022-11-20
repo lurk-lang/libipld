@@ -2,12 +2,11 @@
 name = "lurk-ipld"
 version = "0.1.0"
 authors = ["porcuquine <porcuquine@gmail.com>"]
-edition = "2018"
+edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "IPLD library for Lurk"
 repository = "https://github.com/lurk-lang/lurk-ipld"
 readme = "README.md"
-resolver = "2"
 
 [package.metadata.release]
 consolidate-commits = true
@@ -15,8 +14,6 @@ consolidate-pushes = true
 shared-version = true
 
 [dependencies]
-async-trait = "0.1.50"
-cached = { version = "0.30.0", default-features = false }
 fnv = "1.0.7"
 lurk-ipld-cbor = { version = "0.1.0", path = "dag-cbor", optional = true }
 lurk-ipld-cbor-derive = { version = "0.1.0", path = "dag-cbor-derive", optional = true }
@@ -26,7 +23,6 @@ lurk-ipld-macro = { version = "0.1.0", path = "macro" }
 lurk-ipld-pb = { version = "0.1.0", path = "dag-pb", optional = true }
 log = "0.4.14"
 multihash = { version = "0.16.0", default-features = false, features = ["multihash-impl"] }
-parking_lot = "0.12.0"
 thiserror = "1.0.25"
 
 [dev-dependencies]
@@ -60,8 +56,4 @@ debug = true
 
 [[bench]]
 name = "codec"
-harness = false
-
-[[bench]]
-name = "store"
 harness = false
