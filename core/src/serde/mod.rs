@@ -144,10 +144,9 @@ mod test {
         ]);
         assert_roundtrip(&struct_enum, &expected_ipld);
 
-        let unit = ();
         let expected_ipld = Ipld::List(vec![]);
 
-        assert_roundtrip(&unit, &expected_ipld);
+        assert_roundtrip(&(), &expected_ipld);
 
         let map: BTreeMap<String, u64> =
             BTreeMap::from([("hello".into(), 1u64), ("world!".into(), 7u64)]);
