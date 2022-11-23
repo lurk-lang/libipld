@@ -4,7 +4,7 @@ version = "0.2.0"
 authors = ["porcuquine <porcuquine@gmail.com>"]
 edition = "2021"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/lurk-lang/lurk-ipld"
+repository = "https://github.com/lurk-lang/libipld"
 description = "lurk-ipld dag-cbor"
 
 [dependencies]
