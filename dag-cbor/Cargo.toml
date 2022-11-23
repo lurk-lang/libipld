@@ -1,15 +1,15 @@
 [package]
 name = "lurk-ipld-cbor"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["porcuquine <porcuquine@gmail.com>"]
 edition = "2021"
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/lurk-lang/lurk-ipld"
+repository = "https://github.com/lurk-lang/libipld"
 description = "lurk-ipld dag-cbor"
 
 [dependencies]
 byteorder = "1.4.3"
-lurk-ipld-core = { version = "0.2.0", path = "../core" }
+lurk-ipld-core = { version = "0.3.0", path = "../core" }
 thiserror = "1.0.25"
 
 [dev-dependencies]
